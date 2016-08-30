@@ -29,7 +29,7 @@ class CreateCourseCase(TestCase):
         post_data = {
             'name': 'Zero Zero One',
         }
-        response = self.client.post(reverse('create_course'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:create_course'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -43,7 +43,7 @@ class CreateCourseCase(TestCase):
         post_data = {
             'vle_course_id': '001',
         }
-        response = self.client.post(reverse('create_course'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:create_course'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -60,7 +60,7 @@ class CreateCourseCase(TestCase):
             'vle_course_id': '001',
             'name': 'wibble',
         }
-        response = self.client.post(reverse('create_course'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:create_course'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -75,7 +75,7 @@ class CreateCourseCase(TestCase):
             'vle_course_id': '001',
             'name': 'Zero Zero One',
         }
-        response = self.client.post(reverse('create_course'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:create_course'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it was successful
         self.assertEqual(200, response.status_code)
@@ -110,7 +110,7 @@ class UpdateCourseTestCase(TestCase):
     def test_update_course_missing_fields(self):
         # make a request
         post_data = {}
-        response = self.client.post(reverse('update_course'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:update_course'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -126,7 +126,7 @@ class UpdateCourseTestCase(TestCase):
             'vle_course_id': '002',
             'name': 'wibble',
         }
-        response = self.client.post(reverse('update_course'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:update_course'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -147,7 +147,7 @@ class UpdateCourseTestCase(TestCase):
             'vle_course_id': '002',
             'name': 'Zero Zero Two',
         }
-        response = self.client.post(reverse('update_course'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:update_course'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it was successful
         self.assertEqual(200, response.status_code)
@@ -190,7 +190,7 @@ class DeleteCourseTestCase(TestCase):
     def test_delete_course_missing_field(self):
         # make a request
         post_data = {}
-        response = self.client.post(reverse('delete_course'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:delete_course'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -204,7 +204,7 @@ class DeleteCourseTestCase(TestCase):
         post_data = {
             'vle_course_id': '001',
         }
-        response = self.client.post(reverse('delete_course'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:delete_course'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -230,7 +230,7 @@ class DeleteCourseTestCase(TestCase):
         post_data = {
             'vle_course_id': '001',
         }
-        response = self.client.post(reverse('delete_course'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:delete_course'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it was successful
         self.assertEqual(200, response.status_code)
@@ -279,7 +279,7 @@ class AddCourseMembersTestCase(TestCase):
                 ('cersei.lannister', False),
             ],
         }
-        response = self.client.post(reverse('add_course_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:add_course_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -293,7 +293,7 @@ class AddCourseMembersTestCase(TestCase):
         post_data = {
             'vle_course_id': '001',
         }
-        response = self.client.post(reverse('add_course_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:add_course_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -311,7 +311,7 @@ class AddCourseMembersTestCase(TestCase):
                 self.users['Tywin'].username,
             ]
         }
-        response = self.client.post(reverse('add_course_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:add_course_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -333,7 +333,7 @@ class AddCourseMembersTestCase(TestCase):
                 self.users['Jaime'].username,
             ]
         }
-        response = self.client.post(reverse('add_course_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:add_course_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it was successful
         self.assertEqual(200, response.status_code)
@@ -360,7 +360,7 @@ class AddCourseMembersTestCase(TestCase):
                 'invalid_003',
             ],
         }
-        response = self.client.post(reverse('add_course_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:add_course_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it was successful
         self.assertEqual(200, response.status_code)
@@ -396,7 +396,7 @@ class RemoveCourseMembersTestCase(TestCase):
         post_data = {
             'usernames': ['cersei.lannister'],
         }
-        response = self.client.post(reverse('remove_course_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:remove_course_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -410,7 +410,7 @@ class RemoveCourseMembersTestCase(TestCase):
         post_data = {
             'vle_course_id': '001',
         }
-        response = self.client.post(reverse('remove_course_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:remove_course_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -425,7 +425,7 @@ class RemoveCourseMembersTestCase(TestCase):
             'vle_course_id': '001',
             'usernames': [self.users['Cersei'].username, self.users['Tywin'].username]
         }
-        response = self.client.post(reverse('remove_course_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:remove_course_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -446,7 +446,7 @@ class RemoveCourseMembersTestCase(TestCase):
             'vle_course_id': '001',
             'usernames': [self.users['Cersei'].username, self.users['Tywin'].username, self.users['Jaime'].username]
         }
-        response = self.client.post(reverse('remove_course_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:remove_course_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it was successful
         self.assertEqual(200, response.status_code)
@@ -474,7 +474,7 @@ class RemoveCourseMembersTestCase(TestCase):
             'vle_course_id': '001',
             'usernames': ['invalid_001', 'invalid_002', 'invalid_003'],
         }
-        response = self.client.post(reverse('remove_course_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:remove_course_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it was successful
         self.assertEqual(200, response.status_code)
@@ -497,7 +497,7 @@ class RemoveCourseMembersTestCase(TestCase):
             'vle_course_id': '001',
             'usernames': [self.users['Cersei'].username],
         }
-        response = self.client.post(reverse('remove_course_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:remove_course_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it was successful
         self.assertEqual(200, response.status_code)
@@ -534,7 +534,7 @@ class AddTutorTestCase(TestCase):
         post_data = {
             'username': self.users['Cersei'].username,
         }
-        response = self.client.post(reverse('add_tutor'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:add_tutor'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -548,7 +548,7 @@ class AddTutorTestCase(TestCase):
         post_data = {
             'vle_course_id': '001',
         }
-        response = self.client.post(reverse('add_tutor'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:add_tutor'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -565,7 +565,7 @@ class AddTutorTestCase(TestCase):
             'vle_course_id': '001',
             'username': 'does.not.exist',
         }
-        response = self.client.post(reverse('add_tutor'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:add_tutor'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -582,7 +582,7 @@ class AddTutorTestCase(TestCase):
             'vle_course_id': '001',
             'username': self.users['Cersei'].username,
         }
-        response = self.client.post(reverse('add_tutor'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:add_tutor'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -600,7 +600,7 @@ class AddTutorTestCase(TestCase):
             'vle_course_id': '001',
             'username': self.users['Cersei'].username,
         }
-        response = self.client.post(reverse('add_tutor'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:add_tutor'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it was successful
         self.assertEqual(200, response.status_code)
@@ -636,7 +636,7 @@ class RemoveTutorTestCase(TestCase):
         post_data = {
             'username': self.users['Cersei'].username,
         }
-        response = self.client.post(reverse('remove_tutor'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:remove_tutor'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -650,7 +650,7 @@ class RemoveTutorTestCase(TestCase):
         post_data = {
             'vle_course_id': '001',
         }
-        response = self.client.post(reverse('remove_tutor'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:remove_tutor'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -667,7 +667,7 @@ class RemoveTutorTestCase(TestCase):
             'vle_course_id': '001',
             'username': 'does.not.exist',
         }
-        response = self.client.post(reverse('remove_tutor'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:remove_tutor'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -684,7 +684,7 @@ class RemoveTutorTestCase(TestCase):
             'vle_course_id': '001',
             'username': self.users['Cersei'].username,
         }
-        response = self.client.post(reverse('remove_tutor'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:remove_tutor'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -702,7 +702,7 @@ class RemoveTutorTestCase(TestCase):
             'vle_course_id': '001',
             'username': self.users['Cersei'].username,
         }
-        response = self.client.post(reverse('remove_tutor'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:remove_tutor'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it was successful
         self.assertEqual(200, response.status_code)
@@ -729,7 +729,7 @@ class CreateGroupTestCase(TestCase):
             'vle_group_id': '001a',
             'name': 'Zero Zero One',
         }
-        response = self.client.post(reverse('create_group'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:create_group'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -744,7 +744,7 @@ class CreateGroupTestCase(TestCase):
             'vle_course_id': '001',
             'name': 'Zero Zero One',
         }
-        response = self.client.post(reverse('create_group'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:create_group'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -759,7 +759,7 @@ class CreateGroupTestCase(TestCase):
             'vle_course_id': '001',
             'vle_group_id': '001a',
         }
-        response = self.client.post(reverse('create_group'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:create_group'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -778,7 +778,7 @@ class CreateGroupTestCase(TestCase):
             'vle_group_id': '001a',
             'name': 'irrelevant',
         }
-        response = self.client.post(reverse('create_group'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:create_group'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -794,7 +794,7 @@ class CreateGroupTestCase(TestCase):
             'vle_group_id': '001a',
             'name': 'Zero Zero One A',
         }
-        response = self.client.post(reverse('create_group'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:create_group'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -812,7 +812,7 @@ class CreateGroupTestCase(TestCase):
             'vle_group_id': '001a',
             'name': 'Zero Zero One A',
         }
-        response = self.client.post(reverse('create_group'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:create_group'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it was successful
         self.assertEqual(200, response.status_code)
@@ -847,7 +847,7 @@ class UpdateGroupTestCase(TestCase):
     def test_update_group_missing_fields(self):
         # make a request
         post_data = {}
-        response = self.client.post(reverse('update_group'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:update_group'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -863,7 +863,7 @@ class UpdateGroupTestCase(TestCase):
             'old_vle_group_id': '001a',
             'name': 'irrelevant',
         }
-        response = self.client.post(reverse('update_group'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:update_group'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -880,7 +880,7 @@ class UpdateGroupTestCase(TestCase):
             'vle_group_id': '001b',
             'name': 'irrelevant',
         }
-        response = self.client.post(reverse('update_group'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:update_group'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -902,7 +902,7 @@ class UpdateGroupTestCase(TestCase):
             'vle_group_id': '001b',
             'name': 'Zero Zero One B',
         }
-        response = self.client.post(reverse('update_group'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:update_group'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it was successful
         self.assertEqual(200, response.status_code)
@@ -943,7 +943,7 @@ class DeleteGroupTestCase(TestCase):
     def test_delete_group_missing_field(self):
         # make a request
         post_data = {}
-        response = self.client.post(reverse('delete_group'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:delete_group'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -958,7 +958,7 @@ class DeleteGroupTestCase(TestCase):
             'vle_course_id': '001',
             'vle_group_id': '001a',
         }
-        response = self.client.post(reverse('delete_group'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:delete_group'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -987,7 +987,7 @@ class DeleteGroupTestCase(TestCase):
             'vle_course_id': '001',
             'vle_group_id': '001a',
         }
-        response = self.client.post(reverse('delete_group'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:delete_group'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it was successful
         self.assertEqual(200, response.status_code)
@@ -1041,7 +1041,7 @@ class AddGroupMembersTestCase(TestCase):
             'vle_group_id': '001a',
             'usernames': [self.users['Cersei'].username],
         }
-        response = self.client.post(reverse('add_group_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:add_group_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -1056,7 +1056,7 @@ class AddGroupMembersTestCase(TestCase):
             'vle_course_id': '001',
             'usernames': [self.users['Cersei'].username],
         }
-        response = self.client.post(reverse('add_group_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:add_group_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -1071,7 +1071,7 @@ class AddGroupMembersTestCase(TestCase):
             'vle_course_id': '001',
             'vle_group_id': '001a',
         }
-        response = self.client.post(reverse('add_group_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:add_group_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -1089,7 +1089,7 @@ class AddGroupMembersTestCase(TestCase):
             'vle_group_id': '001a',
             'usernames': [self.users['Cersei'].username, self.users['Tywin'].username],
         }
-        response = self.client.post(reverse('add_group_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:add_group_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -1111,7 +1111,7 @@ class AddGroupMembersTestCase(TestCase):
             'vle_group_id': '001a',
             'usernames': [self.users['Cersei'].username, self.users['Tywin'].username, self.users['Jaime'].username],
         }
-        response = self.client.post(reverse('add_group_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:add_group_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it was successful
         self.assertEqual(200, response.status_code)
@@ -1136,7 +1136,7 @@ class AddGroupMembersTestCase(TestCase):
             'vle_group_id': '001a',
             'usernames': [self.users['Cersei'].username, self.users['Tywin'].username, self.users['Jaime'].username],
         }
-        response = self.client.post(reverse('add_group_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:add_group_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it was successful
         self.assertEqual(200, response.status_code)
@@ -1162,7 +1162,7 @@ class AddGroupMembersTestCase(TestCase):
             'vle_group_id': '001a',
             'usernames': ['invalid_001', 'invalid_002', 'invalid_003'],
         }
-        response = self.client.post(reverse('add_group_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:add_group_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it was successful
         self.assertEqual(200, response.status_code)
@@ -1200,7 +1200,7 @@ class RemoveGroupMembersTestCase(TestCase):
             'vle_group_id': '001a',
             'usernames': ['cersei.lannister'],
         }
-        response = self.client.post(reverse('remove_group_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:remove_group_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -1217,7 +1217,7 @@ class RemoveGroupMembersTestCase(TestCase):
             'vle_course_id': '001',
             'usernames': ['cersei.lannister'],
         }
-        response = self.client.post(reverse('remove_group_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:remove_group_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -1232,7 +1232,7 @@ class RemoveGroupMembersTestCase(TestCase):
             'vle_course_id': '001',
             'vle_group_id': '001a',
         }
-        response = self.client.post(reverse('remove_group_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:remove_group_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -1250,7 +1250,7 @@ class RemoveGroupMembersTestCase(TestCase):
             'vle_group_id': '001a',
             'usernames': [self.users['Cersei'].username, self.users['Tywin'].username]
         }
-        response = self.client.post(reverse('remove_group_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:remove_group_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -1268,7 +1268,7 @@ class RemoveGroupMembersTestCase(TestCase):
             'vle_group_id': '001a',
             'usernames': [self.users['Cersei'].username, self.users['Tywin'].username]
         }
-        response = self.client.post(reverse('remove_group_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:remove_group_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it wasn't successful
         self.assertEqual(400, response.status_code)
@@ -1296,7 +1296,7 @@ class RemoveGroupMembersTestCase(TestCase):
             'vle_group_id': '001a',
             'usernames': [self.users['Cersei'].username, self.users['Tywin'].username, self.users['Tyrion'].username]
         }
-        response = self.client.post(reverse('remove_group_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:remove_group_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it was successful
         self.assertEqual(200, response.status_code)
@@ -1340,7 +1340,7 @@ class RemoveGroupMembersTestCase(TestCase):
             'vle_group_id': '001a',
             'usernames': ['invalid_001', 'invalid_002', 'invalid_003'],
         }
-        response = self.client.post(reverse('remove_group_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
+        response = self.client.post(reverse('vle_api:remove_group_members'), content_type='application/json', data=json.dumps(post_data), **self.auth_headers)
 
         # check it was successful
         self.assertEqual(200, response.status_code)
